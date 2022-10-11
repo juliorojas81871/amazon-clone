@@ -1,15 +1,21 @@
-import React from 'react'
+import { Product } from "./index";
 
-const ProductFeed = ({products}) => {
+const ProductFeed = ({ products }) => {
   return (
     <div>
-        <h1>ProductFeed</h1>
-        {products.map((product) => (
-            <p>{product.title}</p>
-        ))}
+      {products.map(({ id, title, price, description, category, image }) => (
+        <Product
+          key={id}
+          id={id}
+          title={title}
+          price={price}
+          description={description}
+          category={category}
+          image={image}
+        />
+      ))}
     </div>
-   
-  )
-}
+  );
+};
 
-export default ProductFeed
+export default ProductFeed;
