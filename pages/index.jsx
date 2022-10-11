@@ -6,7 +6,7 @@ const Home = ({products}) => {
     <div className='bg-gray-100'>
       <Head>
         <title>Amazon Clone</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Amazon_icon.jpg" />
       </Head>
       <div>
         <Header />
@@ -24,8 +24,8 @@ const Home = ({products}) => {
 export default Home
 
 export async function getServerSideProps() {
-    const products = await fetch("https://fakestoreapi.com/products").then(
-      (res) => res.json()
+  const products = await fetch("https://fakestoreapi.com/products").then(
+    (res) => res.json()
   );
   return {
     props: {

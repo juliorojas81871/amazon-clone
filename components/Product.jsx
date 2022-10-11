@@ -1,33 +1,85 @@
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import { currencyFormat } from '../app/currencyFormat';
+import { currencyFormat } from "../app/currencyFormat";
 
-const MAX_RATING = 5;
-const MIN_RATING = 1;
-const Product = ({ id, title, price, description, category, image }) => {
-  const [rating] = useState(
-    Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
-  );
-  const [hasPrime] = useState(Math.random() < 0.5);
+const Product = ({
+  id,
+  title,
+  price,
+  description,
+  category,
+  image,
+  rating,
+  hasPrime,
+}) => {
+  console.log("rating " + rating);
+  console.log("hasPrime " + hasPrime);
   return (
-    <div>
-      <p>{category}</p>
-      <Image src={image} height={200} width={200} objectFit="contain" />
-      <h4>{title}</h4>
+    <div className="relative z-40 mx-5 my-3 flex h-[96%] flex-col rounded-2xl border-none bg-white p-10 shadow-sm transition-all duration-150 ease-out hover:scale-105 hover:ease-in">
+      <h1>{rating}</h1>
+      <p className="absolute top-2 right-2 text-xs italic text-gray-400">
+        {category}
+      </p>
+      <Image
+        src={image}
+        alt={title}
+        height={200}
+        width={200}
+        objectFit="contain"
+        className="cursor-pointer overflow-hidden rounded-lg  transition-all duration-150 ease-out hover:ease-in "
+        loading="lazy"
+      />
+      <h4 className="my-3">{title}</h4>
       <div className="flex">
         {Array(rating)
           .fill()
           .map((_, i) => (
-            <StarIcon className="h-5" />
+            <StarIcon key={i} className="h-5 text-yellow-500" />
           ))}
       </div>
-      <p>{description}</p>
+      <p className="text-xs my-2 line-clamp-2">{description}</p>
       <div>
         <p>{currencyFormat(price)}</p>
       </div>
+      {hasPrime && (
+        <div className="flex items-center space-x-2 -mt-5">
+          <img className="w-12" src="/assets/prime.png" alt="" />
+          <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
+        </div>
+      )}
+      <button className="mt-auto button">Add to Basket</button>
     </div>
   );
 };
 
 export default Product;
+
+// export async function serversideprops() {
+//   const MAX_RATING = 5;
+//   const MIN_RATING = 1;
+//   const [rating] = useState(
+//     Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
+//   );
+//   const [hasPrime] = useState(Math.random() < 0.5);
+//   return {
+//     props: {
+//       rating,
+//       hasPrime,
+//     },
+//   };
+// }
+
+export async function getServerSideProps() {
+  const MAX_RATING = 5;
+  const MIN_RATING = 1;
+  const rating = Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING;
+
+  const hasPrime = Math.random() < 0.5;
+  return {
+    props: {
+      rating,
+      hasPrime,
+    },
+  };
+}
