@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { Header, Banner, ProductFeed } from '../components/index'
+import Head from "next/head";
+import { Header, Banner, ProductFeed } from "../components/index";
 
-const Home = ({products}) => {
+const Home = ({ products }) => {
   return (
-    <div className='bg-gray-100'>
+    <div className="bg-gray-100">
       <Head>
         <title>Amazon Clone</title>
         <link rel="icon" href="/Amazon_icon.jpg" />
@@ -11,17 +11,17 @@ const Home = ({products}) => {
       <div>
         <Header />
       </div>
-      <main className='max-w-screen-2xl mx-auto'>
+      <main className="max-w-screen-2xl mx-auto">
         {/* Banner */}
         <Banner />
         {/* ProductFeed */}
         <ProductFeed products={products} />
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 export async function getServerSideProps() {
   const products = await fetch("https://fakestoreapi.com/products").then(
