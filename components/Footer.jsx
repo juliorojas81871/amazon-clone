@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Link from 'next/link'
+import { useRouter } from "next/router";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
   return (
-    <div className="static bottom-0 w-full overflow-hidden">
+    <footer className="sticky top-[100vh] bottom-0 w-full overflow-hidden">
       <div className="bg-amazon_blue-light md:px-5 lg:px-10">
         <div className="flex flex-col flex-wrap items-center justify-center space-x-6 space-y-5 pb-8 pt-4 text-white sm:flex-row sm:items-baseline md:space-x-10 lg:space-x-12 xl:space-x-24">
           <div className="ml-3">
@@ -51,17 +52,15 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-grow justify-evenly border-t border-gray-600 bg-amazon_blue pt-4 font-semibold text-white">
-        <Link href="/">
-          <Image
-            src="/assets/amazon.png"
-            alt="Amazon"
-            width={140}
-            height={30}
-            objectFit="contain"
-            className="cursor-pointer"
-          />
-        </Link>
-
+        <Image
+          src="/assets/amazon.png"
+          alt="Amazon"
+          width={140}
+          height={30}
+          objectFit="contain"
+          onClick={() => router.push("/")}
+          className="cursor-pointer"
+        />
         <h1 className="-mt-1 text-xl md:text-2xl">
           © {currentYear} Julio C Rojas
         </h1>
@@ -70,7 +69,7 @@ const Footer = () => {
         Note : This has been made only for educational purposes. No copyright
         intended.
       </p>
-    </div>
+    </footer>
   );
 };
 

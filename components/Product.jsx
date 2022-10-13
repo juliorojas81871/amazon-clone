@@ -3,19 +3,23 @@ import { StarIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
 import { currencyFormat } from "../app/currencyFormat";
 
-const Product = ({ id, title, price, description, category, image, rating, hasPrime }) => {
+const Product = ({
+  id,
+  title,
+  price,
+  description,
+  category,
+  image,
+  rating,
+  hasPrime,
+}) => {
   return (
     <div className="relative z-40 mx-5 my-3 flex h-[96%] flex-col rounded-2xl border-none bg-white p-10 shadow-sm transition-all duration-150 ease-out hover:scale-105 hover:ease-in ">
       <p className="absolute top-2 right-3 text-base capitalize italic text-gray-400">
         {category}
       </p>
 
-      <Image
-        src={image}
-        height={200}
-        width={200} 
-        objectFit="contain"
-      />
+      <Image src={image} height={200} width={200} objectFit="contain" />
 
       <h4 className="my-3">{title}</h4>
       <div className="flex">

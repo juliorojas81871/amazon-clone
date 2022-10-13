@@ -32,10 +32,11 @@ export async function getServerSideProps() {
     (res) => res.json()
   );
 
-  const productsWithRatings = products.map(product => ({
+  const productsWithRatings = products.map((product) => ({
     ...product,
-    rating: Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING,
-    hasPrime: Math.random() < 0.5
+    rating:
+      Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING,
+    hasPrime: Math.random() < 0.5,
   }));
 
   return {

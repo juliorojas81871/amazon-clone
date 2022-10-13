@@ -4,8 +4,12 @@ import {
   SearchIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const { data: session } = useSession();
+  const router = useRouter();
   return (
     <header className="sticky top-0 z-50">
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
@@ -17,6 +21,7 @@ const Header = () => {
             height={40}
             objectFit="contain"
             className="cursor-pointer"
+            onClick={() => router.push("/")}
           />
         </div>
         {/* search */}
@@ -30,15 +35,28 @@ const Header = () => {
         <div>
           {/* right */}
           <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-            <div className="link">
-              <p>Hello Julio Rojas</p>
-              <p className="font-extrabold md:text-sm">Account & Lists</p>
-            </div>
+            {session ? (
+              <div
+                onClick={signOut}
+                className="link hover:after:content-['Sign_Out'] hover:after:absolute after:top-13 after:right-38 after:white hover:after:border-2 after:rounded-sm hover:after:border-[#white] after:bg-amazon_blue-light hover:after:w-18 sm:hover:after:w-[100px] hover:after:text-center"
+              >
+                <p>{session ? `Hello, ${session.user.name}` : "Sign In"}</p>
+                <p className="font-extrabold md:text-sm">Account & Lists</p>
+              </div>
+            ) : (
+              <div onClick={signIn} className="link">
+                <p className="font-extrabold md:text-sm">Sign In</p>
+              </div>
+            )}
+
             <div className="link">
               <p>Returns</p>
               <p className="font-extrabold md:text-sm">& Orders</p>
             </div>
-            <div className="link relative flex items-center">
+            <div
+              className="link relative flex items-center"
+              onClick={() => router.push("/checkout")}
+            >
               <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 rounded-full text-center text-black font-bold">
                 0
               </span>
