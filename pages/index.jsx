@@ -8,10 +8,8 @@ const Home = ({ productsWithRatings }) => {
         <title>Amazon Clone</title>
         <link rel="icon" href="/Amazon_icon.jpg" />
       </Head>
-      <div>
-        <Header />
-      </div>
-      <main className="max-h-screen-1xl mx-auto max-w-screen-2xl">
+      <Header />
+      <main className="max-h-screen-1xl mx-auto max-w-screen-2xl mb-1">
         {/* Banner */}
         <Banner />
         {/* ProductFeed */}
