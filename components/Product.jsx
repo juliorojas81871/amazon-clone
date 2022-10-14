@@ -3,6 +3,8 @@ import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
 import Currency from "react-currency-formatter";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Product = ({
   id,
@@ -32,6 +34,27 @@ const Product = ({
     );
   };
 
+  const notify = () => {
+    const product = {
+      id,
+      title,
+    }
+    toast.success(
+      <div>
+        <p className="font-semibold">Product Added Successfully !!</p>
+        <p className="text-xs text-gray-400 line-clamp-1"> {product.title}</p>
+      </div>,
+      {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      }
+    )
+  }
   return (
     <div className="relative z-40 mx-5 my-3 flex h-[96%] flex-col rounded-2xl border-none bg-white p-10 shadow-sm transition-all duration-150 ease-out hover:scale-105 hover:ease-in ">
       <p className="absolute top-2 right-3 text-base capitalize italic text-gray-400">
@@ -58,7 +81,12 @@ const Product = ({
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
       )}
-      <button onClick={addItemToBasket} className="mt-auto button">
+      <button 
+        onClick={() =>  {
+          addItemToBasket(),
+          notify()
+        }} 
+        className="mt-auto button">
         Add to Basket
       </button>
     </div>

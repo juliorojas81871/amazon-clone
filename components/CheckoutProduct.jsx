@@ -8,6 +8,8 @@ import {
   removeGroupedFromBasket,
 } from "../slices/basketSlice";
 import { TrashIcon } from "@heroicons/react/outline";
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const CheckoutProduct = ({
   id,
@@ -37,11 +39,41 @@ const CheckoutProduct = ({
         hasPrime,
       })
     );
+    toast.success(
+      <div>
+        <p className="font-semibold">Product Increased</p>
+        <p className="text-xs text-gray-400 line-clamp-1"> {title}</p>
+      </div>,
+      {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      }
+    )
   };
 
   const removeItemFromBasket = () => {
     // remove a single item from REDUX store
     dispatch(removeFromBasket({ id }));
+    toast.success(
+      <div>
+        <p className="font-semibold">Product Decreased</p>
+        <p className="text-xs text-gray-400 line-clamp-1"> {title}</p>
+      </div>,
+      {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      }
+    )
   };
 
   const removeGroupFromBasket = () => {
@@ -51,8 +83,35 @@ const CheckoutProduct = ({
     };
     //remove product as an action from the REDUX store
     dispatch(removeGroupedFromBasket({ id }));
+    toast.success(
+      <div>
+        <p className="font-semibold">Product Removed Successfully</p>
+        <p className="text-xs text-gray-400 line-clamp-1"> {title}</p>
+      </div>,
+      {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      }
+    )
   };
   return (
+    <>
+    <ToastContainer
+      position="top-right"
+      autoClose={2500}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
     <div className="border-b py-4">
       <div className="grid grid-cols-5">
         <Image src={image} height={200} width={200} objectFit="contain" />
@@ -122,6 +181,7 @@ const CheckoutProduct = ({
         </button>
       </div>
     </div>
+    </>
   );
 };
 

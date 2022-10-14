@@ -1,7 +1,21 @@
 import { Product } from "./index";
+import { ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const ProductFeed = ({ productsWithRatings }) => {
   return (
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto">
       {productsWithRatings
         .slice(0, 4)
@@ -88,7 +102,7 @@ const ProductFeed = ({ productsWithRatings }) => {
             />
           )
         )}
-    </div>
+    </div></>
   );
 };
 
