@@ -1,10 +1,9 @@
-/** @type {import('next').NextConfig} */
 module.exports = {
   images: {
     domains: ["fakestoreapi.com"],
   },
-  reactStrictMode: true,
+  mode: 'universal',
   env: {
-    stipe_public_key: process.env.REACT_APP_STRIPE_PUBLIC_KEY
+    stripe_public_key: process.env.STRIPE_PUBLIC_KEY
   },
 }
