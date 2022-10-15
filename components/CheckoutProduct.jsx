@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { StarIcon, MinusSmIcon, PlusIcon } from "@heroicons/react/solid";
-import Currency from "react-currency-formatter";
+import { currencyFormat } from "../app/currencyFormat";
 import { useDispatch } from "react-redux";
 import {
   addToBasket,
@@ -45,7 +45,7 @@ const CheckoutProduct = ({
         <p className="text-xs text-gray-400 line-clamp-1"> {title}</p>
       </div>,
       {
-        position: 'top-right',
+        position: 'bottom-right',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -65,7 +65,7 @@ const CheckoutProduct = ({
         <p className="text-xs text-gray-400 line-clamp-1"> {title}</p>
       </div>,
       {
-        position: 'top-right',
+        position: 'bottom-right',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -89,7 +89,7 @@ const CheckoutProduct = ({
         <p className="text-xs text-gray-400 line-clamp-1"> {title}</p>
       </div>,
       {
-        position: 'top-right',
+        position: 'bottom-right',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -102,7 +102,7 @@ const CheckoutProduct = ({
   return (
     <>
     <ToastContainer
-      position="top-right"
+      position="bottom-right"
       autoClose={2500}
       hideProgressBar={false}
       newestOnTop={false}
@@ -129,10 +129,10 @@ const CheckoutProduct = ({
           <p className="my-2 text-xs line-clamp-3">{description}</p>
           <a className="text-xl font-bold text-gray-800">{quantity}</a> x{" "}
           <a className="text-xl font-bold text-gray-800">
-            <Currency quantity={price} currency="USD" />
+            {currencyFormat(price)}
           </a>
           <span className="text-xl font-bold text-gray-800">
-            = <Currency quantity={total} currency="USD" />
+            = {currencyFormat(total)}
           </span>
           {hasPrime && (
             <div className="flex items-center space-x-2">

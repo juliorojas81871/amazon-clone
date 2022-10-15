@@ -36,11 +36,9 @@ export const basketSlice = createSlice({
       );
       state.items = newBasket;
     },
-    clearBasket: (state, action) => {
-      state.items = [];
-    },
   },
 });
+
 
 export const { addToBasket, removeFromBasket, removeGroupedFromBasket } =
   basketSlice.actions;

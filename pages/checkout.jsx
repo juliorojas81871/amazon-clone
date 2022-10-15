@@ -4,23 +4,46 @@ import { selectItems, selectTotal } from "../slices/basketSlice";
 import { useSelector } from "react-redux";
 import { TransitionGroup } from "react-transition-group";
 import { CSSTransition } from "react-transition-group";
+import { currencyFormat } from "../app/currencyFormat";
 import { groupBy } from "lodash";
-import Head from "next/head";
-import Currency from "react-currency-formatter";
 import { useSession } from "next-auth/react";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
+const stripePromise = loadStripe(`${process.env.stripe_public_key}`);
 
 const checkout = () => {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const groupItems = Object.values(groupBy(items, "id"));
+
   const { data: session } = useSession();
+
+  const createCheckoutSession = async () => {
+    // Get Stripe.js instance
+    const stripe = await stripePromise;
+
+    // Call your backend to create the Checkout Session
+    const checkoutSession = await await axios.post(
+      "/api/create-checkout-session.js",
+      {
+        items,
+        email: session.user.email,
+      }
+    );
+
+    // Redirect Customer to Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <Head>
-        <title>Amazon Clone</title>
-        <link rel="icon" href="/Amazon_icon.jpg" />
-      </Head>
       <Header />
       <main className="lg:flex max-w-screen-2xl mx-auto">
         {/* left */}
@@ -74,12 +97,13 @@ const checkout = () => {
                 <h2 className="whitespace-nowrap text-center text-xl font-semibold">
                   Subtotal ({items.length} items):{" "}
                   <span className="ml-1 text-xl font-bold text-gray-800">
-                    <Currency quantity={total} currency="USD" />
+                    {currencyFormat(total)}
                   </span>
                 </h2>
                 <button
                   disabled={!session}
                   role="link"
+                  onClick={createCheckoutSession}
                   className={`button mt-2 ${
                     !session &&
                     "from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed"

@@ -2,9 +2,9 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
-import Currency from "react-currency-formatter";
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { currencyFormat } from "../app/currencyFormat";
 
 const Product = ({
   id,
@@ -19,19 +19,19 @@ const Product = ({
   const dispatch = useDispatch();
 
   const addItemToBasket = () => {
+
     // sending the product as an action to the REDUX store ... the basket slice
-    dispatch(
-      addToBasket({
-        id,
-        title,
-        price,
-        rating,
-        description,
-        category,
-        image,
-        hasPrime,
-      })
-    );
+    const product = {
+      id,
+      title,
+      price,
+      rating,
+      description,
+      category,
+      image,
+      hasPrime,
+    }
+    dispatch(addToBasket(product));
   };
 
   const notify = () => {
@@ -45,7 +45,7 @@ const Product = ({
         <p className="text-xs text-gray-400 line-clamp-1"> {product.title}</p>
       </div>,
       {
-        position: 'top-right',
+        position: 'bottom-right',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -73,7 +73,7 @@ const Product = ({
       </div>
       <p className="my-2 text-xs line-clamp-2">{description}</p>
       <div className="mb-5 font-medium">
-        <Currency quantity={price} currency="USD" />
+        <p>{currencyFormat(price)}</p>
       </div>
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">
