@@ -6,13 +6,26 @@ import {
 } from "@heroicons/react/outline";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
+import { updateString } from "../slices/searchSlice";
+import {useState} from 'react';
 
 const Header = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const items = useSelector(selectItems);
+  const dispatch = useDispatch();
+  const [input, setInput] = useState("");
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    dispatch(updateString(e.target.value));
+  };
+
+  const search = () => {
+    dispatch(updateString(input));
+  };
 
   return (
     <header className="sticky top-0 z-50">
@@ -33,8 +46,10 @@ const Header = () => {
           <input
             className="p-2 g-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none"
             type="text"
+            value={input}
+            onChange={(e) => handleInputChange(e)}
           />
-          <SearchIcon className="h-12 p-4" />
+          <SearchIcon onClick={search} className="h-12 p-4" />
         </div>
         <div>
           {/* right */}
@@ -77,8 +92,10 @@ const Header = () => {
           <input
             className="p-2 g-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none"
             type="text"
+            value={input}
+            onChange={(e) => handleInputChange(e)}
           />
-          <SearchIcon className="h-12 p-4" />
+          <SearchIcon onClick={search} className="h-12 p-4" />
         </div>
       </div>
 

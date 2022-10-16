@@ -28,12 +28,12 @@ export default async (req, res) => {
   //Instead of sending an array of multiple similar values, group them to save space in session
   const groupedImages = Object.values(
     groupBy(items.map((item) => path.basename(item.image)))
-  ).map((group) => [group.length, group[0]])
+  ).map((group) => [group.length, group[0]]);
 
   const session = await stripe.checkout.sessions.create({
     customer_email: email,
     payment_method_types: ["card"],
-    shipping_options: [{shipping_rate:"shr_1Lszk7JJobov9ZbE8QLk2xsA"}],
+    shipping_options: [{ shipping_rate: "shr_1Lszk7JJobov9ZbE8QLk2xsA" }],
     shipping_address_collection: {
       allowed_countries: ["GB", "US", "CA"],
     },

@@ -5,6 +5,7 @@ import { addToBasket } from "../slices/basketSlice";
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { currencyFormat } from "../app/currencyFormat";
+import Currency from "react-currency-formatter";
 
 const Product = ({
   id,
@@ -73,7 +74,8 @@ const Product = ({
       </div>
       <p className="my-2 text-xs line-clamp-2">{description}</p>
       <div className="mb-5 font-medium">
-        <p>{currencyFormat(price)}</p>
+        {/* <p>{currencyFormat(price)}</p> */}
+        <Currency quantity={price} currency="USD"/>
       </div>
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">
