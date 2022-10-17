@@ -9,14 +9,22 @@ import { groupBy } from "lodash";
 import { useSession } from "next-auth/react";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { useState, useEffect } from "react";
 
 const stripePromise = loadStripe(process.env.stripe_public_key);
 const checkout = () => {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const groupItems = Object.values(groupBy(items, "id"));
+  const [number, setNumber] = useState(0)
+  const [numberTotal, setNumberTotal] = useState(0)
 
   const { data: session } = useSession();
+
+  useEffect(() => {
+    setNumber(items)
+    setNumberTotal(total)
+  },[items, total])
 
   const createCheckoutSession = async () => {
     // Get Stripe.js instance
@@ -26,7 +34,7 @@ const checkout = () => {
     const checkoutSession = await axios.post(
       "/api/create-checkout-session",
       {
-        items,
+        items: number,
         email: session.user.email,
       }
     );
@@ -55,7 +63,7 @@ const checkout = () => {
           />
           <div className="flex flex-col space-y-6 bg-white p-5">
             <h1 className="border-b pb-4 font-sans text-3xl font-semibold">
-              {items.length === 0
+              {number.length === 0
                 ? `Your Amazon Basket is Empty.`
                 : "Shopping Basket"}
             </h1>
@@ -85,18 +93,18 @@ const checkout = () => {
         </div>
         {/* right */}
         <CSSTransition
-          in={items.length > 0}
+          in={number.length > 0}
           timeout={300}
           classNames="disappear"
           unmountOnExit
         >
           <div className="my-5 mx-5 flex flex-col bg-white p-3 shadow-md">
-            {items.length > 0 && (
+            {number.length > 0 && (
               <>
                 <h2 className="whitespace-nowrap text-center text-xl font-semibold">
-                  Subtotal ({items.length} items):{" "}
+                  Subtotal ({number.length} items):{" "}
                   <span className="ml-1 text-xl font-bold text-gray-800">
-                    {currencyFormat(total)}
+                    {currencyFormat(numberTotal)}
                   </span>
                 </h2>
                 <button

@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 import { updateString } from "../slices/searchSlice";
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 
 const Header = () => {
   const { data: session } = useSession();
@@ -17,6 +17,7 @@ const Header = () => {
   const items = useSelector(selectItems);
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
+  const [number, setNumber] = useState(0)
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -26,6 +27,10 @@ const Header = () => {
   const search = () => {
     dispatch(updateString(input));
   };
+
+  useEffect(() => {
+    setNumber(items.length)
+  },[items])
 
   return (
     <header className="sticky top-0 z-50">
@@ -72,18 +77,18 @@ const Header = () => {
               <p>Returns</p>
               <p className="font-extrabold md:text-sm">& Orders</p>
             </div>
-            <div
+            { <div
               className="link relative flex items-center"
               onClick={() => router.push("/checkout")}
             >
               <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 rounded-full text-center text-black font-bold">
-                {items.length}
+                {number}
               </span>
               <ShoppingCartIcon className="h-10" />
               <p className="hidden md:inline mt-2 font-extrabold md:text-sm">
                 Basket
               </p>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: any) {
           <title>Amazon Clone</title>
           <link rel="icon" href="/Amazon_icon.jpg" />
         </Head>
-            <Component {...pageProps} />
+        <Component {...pageProps} />
       </Provider>
     </SessionProvider>
   );

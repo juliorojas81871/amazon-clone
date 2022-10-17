@@ -48,9 +48,8 @@ export default async (req, res) => {
 
     // Verify that the EVENT posted came from STRIPE
     try {
-      // event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
       event =  await stripe.webhooks.constructEvent(
-        req.rawBody.toString(),
+        payload,
         sig,
         endpointSecret 
       );
@@ -58,6 +57,8 @@ export default async (req, res) => {
       console.log("ERROR", err.message);
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
+    
+    console.log('gggggg ' + event.type)
     // Handle the checkout.session.completed event
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
