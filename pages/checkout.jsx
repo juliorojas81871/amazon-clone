@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { deleteCookie } from 'cookies-next';
 
 const stripePromise = loadStripe(process.env.stripe_public_key);
 const checkout = () => {
@@ -29,7 +30,6 @@ const checkout = () => {
   const createCheckoutSession = async () => {
     // Get Stripe.js instance
     const stripe = await stripePromise;
-
     // Call your backend to create the Checkout Session
     const checkoutSession = await axios.post(
       "/api/create-checkout-session",
@@ -38,7 +38,6 @@ const checkout = () => {
         email: session.user.email,
       }
     );
-
     // Redirect Customer to Checkout
     const result = await stripe.redirectToCheckout({
       sessionId: checkoutSession.data.id,
@@ -46,8 +45,12 @@ const checkout = () => {
 
     if (result.error) {
       alert(result.error.message);
-    }
+    } 
   };
+
+  const removeCookie = () => {
+    deleteCookie('cart');
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -110,7 +113,7 @@ const checkout = () => {
                 <button
                   disabled={!session}
                   role="link"
-                  onClick={createCheckoutSession}
+                  onClick={() => {createCheckoutSession(); removeCookie();}}
                   className={`button mt-2 ${
                     !session &&
                     "from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed"

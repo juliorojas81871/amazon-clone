@@ -4,4 +4,4 @@ export { default as ProductFeed } from "./ProductFeed";
 export { default as Product } from "./Product";
 export { default as Footer } from "./Footer";
 export { default as CheckoutProduct } from "./CheckoutProduct";
-export { default as SuccessCard } from "./SuccessCard";
+export { default as Order } from "./Order";

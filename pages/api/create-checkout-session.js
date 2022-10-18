@@ -42,6 +42,11 @@ export default async (req, res) => {
     allow_promotion_codes: true,
     success_url: `${process.env.HOST}/success`,
     cancel_url: `${process.env.HOST}/checkout`,
+    // discounts: [
+    //   {
+    //     coupon: "XQEa8l8L",
+    //   },
+    // ],
     metadata: {
       email,
       images: JSON.stringify(groupedImages),

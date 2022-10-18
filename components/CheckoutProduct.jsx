@@ -99,6 +99,7 @@ const CheckoutProduct = ({
       }
     )
   };
+
   return (
     <>
     <ToastContainer
@@ -137,7 +138,7 @@ const CheckoutProduct = ({
           {hasPrime && (
             <div className="flex items-center space-x-2">
               <img className="w-12" src="/assets/prime.png" alt="" />
-              <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
+              <p className="text-xs text-gray-500">FREE Next-day Delivery <span className="text-red-500 font-bold">Remember to use your coupon: FREEPRIME</span></p>
             </div>
           )}
         </div>
