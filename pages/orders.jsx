@@ -6,7 +6,7 @@ import moment from "moment";
 
 const orders = ({ orders }) => {
   const { data: session } = useSession();
-  
+ 
   return (
     <div className="bg-gray-100 h-screen">
       <Header />
@@ -24,13 +24,12 @@ const orders = ({ orders }) => {
       </main>
       <div className="mt-5 space-y-4">
           {orders?.map(
-            ({ id, amount, amountShipping, items, timestamp, images }) => (
+            ({ id, amount, amountShipping, timestamp, images }) => (
               <Order
                 key={id}
                 id={id}
                 amount={amount}
                 amountShipping={amountShipping}
-                items={items}
                 timestamp={timestamp}
                 images={images}
               />
