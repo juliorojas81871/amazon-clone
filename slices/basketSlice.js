@@ -1,11 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCookie, setCookie } from 'cookies-next';
-
-const cart = JSON.parse(getCookie('cart') || "[]");
-
+import { getCookie, setCookie } from "cookies-next";
 
 const initialState = {
-  items: cart || [],
+  items: [],
 };
 
 // Global Store Setup
@@ -16,7 +13,7 @@ export const basketSlice = createSlice({
     // action
     addToBasket: (state, action) => {
       state.items = [...state.items, action.payload];
-      setCookie('cart', state.items)
+      setCookie("cart", state.items);
     },
     removeFromBasket: (state, action) => {
       // go throw the list to try and find the id
@@ -34,18 +31,17 @@ export const basketSlice = createSlice({
         );
       }
       state.items = newBasket;
-      setCookie('cart', state.items)
+      setCookie("cart", state.items);
     },
     removeGroupedFromBasket: (state, action) => {
       let newBasket = state.items.filter(
         (item) => item.id !== action.payload.id
       );
       state.items = newBasket;
-      setCookie('cart', state.items)
+      setCookie("cart", state.items);
     },
   },
 });
-
 
 export const { addToBasket, removeFromBasket, removeGroupedFromBasket } =
   basketSlice.actions;

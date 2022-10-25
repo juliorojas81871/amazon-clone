@@ -1,4 +1,5 @@
-import { Header, Banner, ProductFeed, Footer} from "../components/index";
+import { getCookie } from "cookies-next";
+import { Header, Banner, ProductFeed, Footer } from "../components/index";
 
 const Home = ({ productsWithRatings }) => {
   return (
@@ -20,7 +21,7 @@ export default Home;
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ req, res }) {
   const products = await fetch("https://fakestoreapi.com/products").then(
     (res) => res.json()
   );
@@ -32,9 +33,12 @@ export async function getServerSideProps() {
     hasPrime: Math.random() < 0.5,
   }));
 
+  const cart = JSON.parse(getCookie("cart", { req, res }) || "[]");
+
   return {
     props: {
       productsWithRatings,
+      cart,
     },
   };
 }

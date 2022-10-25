@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import Confetti from 'react-confetti'
 import { useRouter } from "next/router";
 import { CheckCircleIcon } from "@heroicons/react/solid";
+import { getCookie } from "cookies-next";
 
 const success = () => {
   const router = useRouter();
@@ -34,6 +35,16 @@ const success = () => {
       <Footer />
     </div>
   )
+}
+
+export const getServerSideProps = ({req, res}) => {
+  const cart = JSON.parse(getCookie("cart", { req, res }) || "[]");
+
+  return {
+    props: {
+      cart
+    }
+  }
 }
 
 export default success
