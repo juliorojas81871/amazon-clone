@@ -45,7 +45,8 @@ const ProductFeed = ({ productsWithRatings }) => {
                 rating,
                 hasPrime,
               }) => (
-                {/* <Product
+                <p>h</p>
+                /* <Product
                   key={id}
                   id={id}
                   title={title}
@@ -55,7 +56,7 @@ const ProductFeed = ({ productsWithRatings }) => {
                   image={image}
                   rating={rating}
                   hasPrime={hasPrime}
-                /> */}
+                /> */
               )
             )}
           <img
@@ -77,7 +78,8 @@ const ProductFeed = ({ productsWithRatings }) => {
                   rating,
                   hasPrime,
                 }) => (
-                  {/* <Product
+                  <p>h</p>
+                  /* <Product
                     key={id}
                     id={id}
                     title={title}
@@ -87,7 +89,7 @@ const ProductFeed = ({ productsWithRatings }) => {
                     image={image}
                     rating={rating}
                     hasPrime={hasPrime}
-                  /> */}
+                  /> */
                 )
               )}
           </div>
@@ -104,7 +106,8 @@ const ProductFeed = ({ productsWithRatings }) => {
                 rating,
                 hasPrime,
               }) => (
-                {/* <Product
+                <p>h</p>
+                /* <Product
                   key={id}
                   id={id}
                   title={title}
@@ -114,7 +117,7 @@ const ProductFeed = ({ productsWithRatings }) => {
                   image={image}
                   rating={rating}
                   hasPrime={hasPrime}
-                /> */}
+                /> */
               )
             )}
         </div>
