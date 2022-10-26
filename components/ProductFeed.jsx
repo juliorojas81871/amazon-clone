@@ -60,7 +60,7 @@ const ProductFeed = ({ productsWithRatings }) => {
               )
             )}
           <img
-            className="my-2 mx-3.5 md:col-span-full"
+            className="my-2 md:col-span-full"
             src="/assets/advertisement.jpg"
             alt=""
           />
@@ -155,7 +155,7 @@ const ProductFeed = ({ productsWithRatings }) => {
             </>
           ))}
           <img
-            className="my-2 mx-3.5 md:col-span-full"
+            className="my-2 md:col-span-full"
             src="/assets/advertisement.jpg"
             alt=""
           />
