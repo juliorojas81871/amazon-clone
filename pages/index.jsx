@@ -7,11 +7,11 @@ const Home = ({ productsWithRatings }) => {
       <Header />
       <main className="max-h-screen-1xl mx-auto max-w-screen-2xl mb-1">
         {/* Banner */}
-        {/* <Banner /> */}
+        <Banner />
         {/* ProductFeed */}
         <ProductFeed productsWithRatings={productsWithRatings} />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
