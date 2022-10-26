@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const router = useRouter();
   return (
-    <footer className="sticky top-[100vh] bottom-0 w-full overflow-hidden">
+    <footer className="top-[100vh] bottom-0 w-full overflow-hidden">
       <div className="bg-amazon_blue-light md:px-5 lg:px-10">
         <div className="flex flex-col flex-wrap items-center justify-center space-x-6 space-y-5 pb-8 pt-4 text-white sm:flex-row sm:items-baseline md:space-x-10 lg:space-x-12 xl:space-x-24">
           <div className="ml-3">

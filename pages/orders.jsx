@@ -35,7 +35,7 @@ const orders = ({ orders }) => {
           />
         ))}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

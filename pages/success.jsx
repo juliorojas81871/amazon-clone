@@ -32,7 +32,7 @@ const success = () => {
           </button>
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

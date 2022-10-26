@@ -118,7 +118,7 @@ const checkout = () => {
           </div>
         </CSSTransition>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
