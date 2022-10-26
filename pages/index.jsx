@@ -11,7 +11,7 @@ const Home = ({ productsWithRatings }) => {
         {/* ProductFeed */}
         <ProductFeed productsWithRatings={productsWithRatings} />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

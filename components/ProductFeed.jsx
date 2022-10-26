@@ -30,7 +30,7 @@ const ProductFeed = ({ productsWithRatings }) => {
         />
         <div
           leaveanimation="none"
-          className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto"
+          className="relative z-30 mx-auto grid max-w-screen-2xl grid-flow-row-dense rounded-md border-none shadow-md md:-mt-36 md:grid-cols-2 lg:-mt-52 lg:grid-cols-3 xl:grid-cols-4"
         >
           {productsWithRatings
             .slice(0, 4)
@@ -63,7 +63,7 @@ const ProductFeed = ({ productsWithRatings }) => {
             src="/assets/advertisement.jpg"
             alt=""
           />
-          <div className="md:col-span-2 xl:col-span-2">
+          <div className="md:col-span-2">
             {productsWithRatings
               .slice(4, 5)
               .map(
