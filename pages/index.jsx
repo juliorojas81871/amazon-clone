@@ -9,7 +9,7 @@ const Home = ({ productsWithRatings }) => {
         {/* Banner */}
         <Banner />
         {/* ProductFeed */}
-        {/* <ProductFeed productsWithRatings={productsWithRatings} /> */}
+        <ProductFeed productsWithRatings={productsWithRatings} />
       </main>
       {/* <Footer /> */}
     </div>
