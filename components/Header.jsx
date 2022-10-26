@@ -28,10 +28,10 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
+    <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
+      <div className="ns:py-2 flex flex-grow items-center bg-amazon_blue p-1 outline-none ">
         {/* Top nav */}
-        <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
+        <div className="flex-shrink-1 mt-2 flex w-28 items-center xs:w-32">
           <Image
             src="/assets/amazon.png"
             width={150}
@@ -42,7 +42,7 @@ const Header = () => {
           />
         </div>
         {/* search */}
-        <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500">
+        <div className="hidden sm:flex relative items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500">
           <input
             className="p-2 g-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none"
             type="text"
