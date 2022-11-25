@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { deleteCookie, getCookie } from "cookies-next";
+import Head from "next/head";
 
 const stripePromise = loadStripe(process.env.stripe_public_key);
 const checkout = () => {
@@ -43,6 +44,10 @@ const checkout = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
+      <Head>
+        <title>Amazon Clone - Checkout</title>
+        <link rel="icon" href="/Amazon_icon.jpg" />
+      </Head>
       <Header />
       <main className="lg:flex max-w-screen-2xl mx-auto">
         {/* left */}

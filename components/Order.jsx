@@ -5,7 +5,7 @@ import { useRef } from "react";
 const Order = ({ id, amount, amountShipping, timestamp, images }) => {
   const imagesParse = useRef(JSON.parse(images)).current;
 
-   const total = imagesParse.reduce((total, [count]) => total + count, 0)
+  const total = imagesParse.reduce((total, [count]) => total + count, 0);
 
   return (
     <div className="relative border rounded-md">

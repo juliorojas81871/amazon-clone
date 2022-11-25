@@ -1,9 +1,14 @@
 import { getCookie } from "cookies-next";
 import { Header, Banner, ProductFeed, Footer } from "../components/index";
+import Head from "next/head";
 
 const Home = ({ productsWithRatings }) => {
   return (
     <div className="bg-gray-100 font-sans">
+      <Head>
+        <title>Amazon Clone - Home</title>
+        <link rel="icon" href="/Amazon_icon.jpg" />
+      </Head>
       <Header />
       <main className="max-h-screen-1xl mx-auto max-w-screen-2xl mb-1">
         {/* Banner */}

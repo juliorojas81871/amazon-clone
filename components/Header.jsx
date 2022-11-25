@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 import { updateString } from "../slices/searchSlice";
 import { useState } from "react";
+import { Dropdown } from "./";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -28,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
+    <header style={{ position: "sticky", top: 0, zIndex: 50 }}>
       <div className="ns:py-2 flex flex-grow items-center bg-amazon_blue p-1 outline-none ">
         {/* Top nav */}
         <div className="flex-shrink-1 mt-2 flex w-28 items-center xs:w-32">
@@ -55,13 +56,11 @@ const Header = () => {
           {/* right */}
           <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
             {session ? (
-              <div
-                onClick={signOut}
-                className="link hover:after:content-['Sign_Out'] hover:after:absolute after:top-13 after:right-38 after:white hover:after:border-2 after:rounded-sm hover:after:border-[#white] after:bg-amazon_blue-light hover:after:w-18 sm:hover:after:w-[100px] hover:after:text-center"
-              >
+              /*<div onClick={signOut} className="link ">
                 <p>{session ? `Hello, ${session.user.name}` : "Sign In"}</p>
                 <p className="font-extrabold md:text-sm">Account & Lists</p>
-              </div>
+              </div>*/
+              <Dropdown />
             ) : (
               <div onClick={signIn} className="link">
                 <p className="font-extrabold md:text-sm">Sign In</p>

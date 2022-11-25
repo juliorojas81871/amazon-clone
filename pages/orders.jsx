@@ -2,7 +2,7 @@ import { Header, Footer, Order } from "../components/index";
 import { getSession, useSession } from "next-auth/react";
 import db from "../firebase";
 import { getCookie } from "cookies-next";
-
+import Head from "next/head";
 import moment from "moment";
 
 const orders = ({ orders }) => {
@@ -11,6 +11,10 @@ const orders = ({ orders }) => {
   return (
     <div className="bg-gray-100 h-screen">
       <Header />
+      <Head>
+        <title>Amazon Clone - Orders History</title>
+        <link rel="icon" href="/Amazon_icon.jpg" />
+      </Head>
 
       <main className="max-w-screen-lg mx-auto p-10">
         <h1 className="text-3xl border-b mb-2 pb-1 border-yellow-400">

@@ -87,7 +87,7 @@ const ProductFeed = ({ productsWithRatings }) => {
                     image={image}
                     rating={rating}
                     hasPrime={hasPrime}
-                  /> 
+                  />
                 )
               )}
           </div>
@@ -180,22 +180,24 @@ const ProductFeed = ({ productsWithRatings }) => {
           </div>
           {results.length > 5 && (
             <>
-              {results.slice(5, productsWithRatings.length).map(({ item, score }, i) => (
-                <>
-                  <Product
-                    category={item.category}
-                    image={item.image}
-                    title={item.title}
-                    description={item.description}
-                    key={item.id}
-                    id={item.id}
-                    price={item.price}
-                    i={i + 5}
-                    rating={item.rating}
-                    hasPrime={item.hasPrime}
-                  />
-                </>
-              ))}
+              {results
+                .slice(5, productsWithRatings.length)
+                .map(({ item, score }, i) => (
+                  <>
+                    <Product
+                      category={item.category}
+                      image={item.image}
+                      title={item.title}
+                      description={item.description}
+                      key={item.id}
+                      id={item.id}
+                      price={item.price}
+                      i={i + 5}
+                      rating={item.rating}
+                      hasPrime={item.hasPrime}
+                    />
+                  </>
+                ))}
             </>
           )}
         </div>

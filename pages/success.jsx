@@ -1,15 +1,25 @@
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Confetti from 'react-confetti'
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Confetti from "react-confetti";
 import { useRouter } from "next/router";
 import { CheckCircleIcon } from "@heroicons/react/solid";
 import { getCookie } from "cookies-next";
+import Head from "next/head";
 
 const success = () => {
   const router = useRouter();
   return (
     <div className="bg-gray-100 h-screen">
-      <Confetti height={765} width={800} recycle={false} className="mx-auto my-4 duration-75" />
+      <Head>
+        <title>Amazon Clone - Order Success</title>
+        <link rel="icon" href="/Amazon_icon.jpg" />
+      </Head>
+      <Confetti
+        height={765}
+        width={800}
+        recycle={false}
+        className="mx-auto my-4 duration-75"
+      />
       <Header />
       <main className="max-w-screen-lg mx-auto">
         <div className="flex flex-col p-10 bg-white">
@@ -34,17 +44,17 @@ const success = () => {
       </main>
       {/* <Footer /> */}
     </div>
-  )
-}
+  );
+};
 
-export const getServerSideProps = ({req, res}) => {
+export const getServerSideProps = ({ req, res }) => {
   const cart = JSON.parse(getCookie("cart", { req, res }) || "[]");
 
   return {
     props: {
-      cart
-    }
-  }
-}
+      cart,
+    },
+  };
+};
 
-export default success
+export default success;
