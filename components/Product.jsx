@@ -89,15 +89,42 @@ const Product = ({
         {Array(rating)
           .fill()
           .map((_, i) => (
-            <StarIcon key={i} className="h-5 text-yellow-500" />
+            <StarIcon
+              key={i}
+              className="h-5 cursor-pointer text-yellow-500"
+              onClick={() =>
+                router.push(
+                  `/product/id/${id}/rating/${rating}/hasPrime/${hasPrime}`
+                )
+              }
+            />
           ))}
       </div>
-      <p className="my-2 text-xs line-clamp-2">{description}</p>
-      <div className="mb-5 font-medium">
+      <p
+        className="my-2 text-xs line-clamp-2 cursor-pointer"
+        onClick={() =>
+          router.push(`/product/id/${id}/rating/${rating}/hasPrime/${hasPrime}`)
+        }
+      >
+        {description}
+      </p>
+      <div
+        className="mb-5 font-medium cursor-pointer"
+        onClick={() =>
+          router.push(`/product/id/${id}/rating/${rating}/hasPrime/${hasPrime}`)
+        }
+      >
         <p>{currencyFormat(price)}</p>
       </div>
       {hasPrime && (
-        <div className="flex items-center space-x-2 -mt-5">
+        <div
+          className="flex items-center space-x-2 -mt-5 cursor-pointer"
+          onClick={() =>
+            router.push(
+              `/product/id/${id}/rating/${rating}/hasPrime/${hasPrime}`
+            )
+          }
+        >
           <img className="w-12" src="/assets/prime.png" alt="" />
           <p className="text-xs text-gray-500">FREE Next-day Delivery</p>
         </div>
