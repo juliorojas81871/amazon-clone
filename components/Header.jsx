@@ -30,9 +30,9 @@ const Header = () => {
 
   return (
     <header style={{ position: "sticky", top: 0, zIndex: 50 }}>
-      <div className="ns:py-2 flex flex-grow items-center bg-amazon_blue p-1 outline-none ">
+      <div className="ns:py-2 justify-between flex flex-grow items-center bg-amazon_blue p-1 outline-none ">
         {/* Top nav */}
-        <div className="flex-shrink-1 mt-2 flex w-28 items-center xs:w-32">
+        <div className="flex-shrink-1 mt-2 flex w-28 items-center xs:w-32 justify-center">
           <Image
             src="/assets/amazon.png"
             width={150}
