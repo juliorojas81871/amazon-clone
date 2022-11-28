@@ -4,20 +4,11 @@ import { useEffect, useState } from "react";
 import ProductInfo from "../../../../../../../components/ProductInfo";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
+import { getCookie } from "cookies-next";
 
-function ProductDetail() {
+function ProductDetail({ productInfo }) {
   const router = useRouter();
-  const { id, rating, hasPrime } = router.query;
-  const [productInfo, setProductInfo] = useState(null);
-
-  const product = async () =>
-    await fetch(`https://fakestoreapi.com/products/${id}`).then((res) =>
-      res.json().then((res) => setProductInfo(res))
-    );
-
-  useEffect(() => {
-    product();
-  }, [id]);
+  const { rating, hasPrime } = router.query;
 
   return (
     <>
@@ -42,7 +33,7 @@ function ProductDetail() {
         <Header />
 
         <main className="flex max-w-screen-2xl mx-auto content-center">
-          {productInfo ? (
+          {productInfo && (
             <ProductInfo
               key={productInfo?.id}
               id={productInfo?.id}
@@ -54,13 +45,29 @@ function ProductDetail() {
               image={productInfo?.image}
               hasPrime={hasPrime}
             />
-          ) : (
-            ""
           )}
         </main>
       </div>
     </>
   );
 }
+
+export const getServerSideProps = async (req, res) => {
+  const {
+    query: { id },
+  } = req;
+  const productInfo = await fetch(
+    `https://fakestoreapi.com/products/${id}`
+  ).then((res) => res.json());
+
+  const cart = JSON.parse(getCookie("cart", { req, res }) || "[]");
+
+  return {
+    props: {
+      productInfo,
+      cart,
+    },
+  };
+};
 
 export default ProductDetail;

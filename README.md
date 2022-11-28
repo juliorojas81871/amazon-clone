@@ -6,6 +6,8 @@ This code is an amazon clone where you can buy items and see your past orders. T
 save items in your cart until you place an order.
 
 If anyone want see this code, [please click at this link](https://amazon-clone-bay-sigma.vercel.app/).
+The Credit Card number to use is 4242 4242 4242 4242.
+The expiration, CVC, name, and address can be anything you want.
 
 ## Technologies & Methods Used
 

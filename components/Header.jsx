@@ -56,10 +56,6 @@ const Header = () => {
           {/* right */}
           <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
             {session ? (
-              /*<div onClick={signOut} className="link ">
-                <p>{session ? `Hello, ${session.user.name}` : "Sign In"}</p>
-                <p className="font-extrabold md:text-sm">Account & Lists</p>
-              </div>*/
               <Dropdown />
             ) : (
               <div onClick={signIn} className="link">
