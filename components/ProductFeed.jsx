@@ -135,7 +135,7 @@ const ProductFeed = ({ productsWithRatings }) => {
           pauseOnHover
         />
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto">
-          {results.slice(0, 4).map(({ item, score }, i) => (
+          {results.map(({ item, score }, i) => (
             <>
               <Product
                 category={item.category}
@@ -151,55 +151,7 @@ const ProductFeed = ({ productsWithRatings }) => {
               />
             </>
           ))}
-          <img
-            className="my-2 md:col-span-full"
-            src="/assets/advertisement.jpg"
-            alt=""
-          />
-          <div className="md:col-span-2 xl:col-span-2">
-            {results.length > 4 && (
-              <>
-                {results.slice(4, 5).map(({ item, score }, i) => (
-                  <>
-                    <Product
-                      category={item.category}
-                      image={item.image}
-                      title={item.title}
-                      description={item.description}
-                      key={item.id}
-                      id={item.id}
-                      price={item.price}
-                      i={i + 5}
-                      rating={item.rating}
-                      hasPrime={item.hasPrime}
-                    />
-                  </>
-                ))}
-              </>
-            )}
-          </div>
-          {results.length > 5 && (
-            <>
-              {results
-                .slice(5, productsWithRatings.length)
-                .map(({ item, score }, i) => (
-                  <>
-                    <Product
-                      category={item.category}
-                      image={item.image}
-                      title={item.title}
-                      description={item.description}
-                      key={item.id}
-                      id={item.id}
-                      price={item.price}
-                      i={i + 5}
-                      rating={item.rating}
-                      hasPrime={item.hasPrime}
-                    />
-                  </>
-                ))}
-            </>
-          )}
+
         </div>
       </>
     );

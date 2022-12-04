@@ -1,5 +1,4 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { Header } from "../components";
 import Confetti from "react-confetti";
 import { useRouter } from "next/router";
 import { CheckCircleIcon } from "@heroicons/react/solid";
@@ -42,7 +41,6 @@ const success = () => {
           </button>
         </div>
       </main>
-      {/* <Footer /> */}
     </div>
   );
 };

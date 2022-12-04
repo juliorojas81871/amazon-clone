@@ -1,4 +1,4 @@
-import { Header, Footer, Order } from "../components/index";
+import { Header, Order } from "../components/index";
 import { getSession, useSession } from "next-auth/react";
 import db from "../firebase";
 import { getCookie } from "cookies-next";

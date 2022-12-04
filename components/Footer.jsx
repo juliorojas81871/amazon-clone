@@ -61,14 +61,10 @@ const Footer = () => {
           onClick={() => router.push("/")}
           className="cursor-pointer"
         />
-        <h1 className="-mt-1 text-xl md:text-2xl">
-          © {currentYear} Julio C Rojas
+        <h1 className="-mt-1 text-xl ">
+          © 1996-{currentYear}, Amazon.com, Inc. or its affiliates
         </h1>
       </div>
-      <p className="flex flex-grow justify-evenly border-t border-gray-600 bg-amazon_blue p-2 text-center font-semibold text-white">
-        Note : This has been made only for educational purposes. No copyright
-        intended.
-      </p>
     </footer>
   );
 };

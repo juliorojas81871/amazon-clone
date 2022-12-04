@@ -1,4 +1,4 @@
-import { Header, Footer, CheckoutProduct } from "../components/index";
+import { Header, CheckoutProduct } from "../components/index";
 import Image from "next/image";
 import { selectItems, selectTotal } from "../slices/basketSlice";
 import { useSelector } from "react-redux";
@@ -123,7 +123,6 @@ const checkout = () => {
           </div>
         </CSSTransition>
       </main>
-      {/* <Footer /> */}
     </div>
   );
 };
