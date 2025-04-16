@@ -3,6 +3,7 @@ import { Header, Banner, ProductFeed, Footer } from "../components/index";
 import Head from "next/head";
 
 const Home = ({ productsWithRatings }) => {
+  console.log("test")
   return (
     <div className="bg-gray-100 font-sans">
       <Head>
